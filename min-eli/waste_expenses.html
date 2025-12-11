@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min-El | Waste & Expenses</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Load Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    
+    <!-- Configure Tailwind for custom colors and use Poppins font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#007bff',
+                        'accent': '#28a745',
+                        'danger': '#dc3545',
+                        'warning': '#ffc107',
+                        'dark-bg': '#343a40',
+                        'light-bg': '#f8f9fa',
+                        'text-dark': '#343a40',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Link Poppins Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom scrollbar styling */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #999; }
+
+        /* Style for the active link in the sidebar */
+        .sidebar a.active {
+            background-color: #495057;
+            border-left: 4px solid #007bff;
+        }
+    </style>
+</head>
+<body class="bg-light-bg font-sans min-h-screen flex antialiased">
+
+    <!-- Waste & Expenses Container -->
+    <div class="flex flex-col lg:flex-row w-full">
+        
+        <!-- Sidebar Navigation -->
+        <div class="sidebar bg-dark-bg text-white w-full lg:w-64 flex flex-col p-4 shadow-xl z-10 lg:h-screen lg:sticky top-0">
+            <h2 class="text-2xl font-bold text-primary text-center mb-6 mt-2 hidden lg:block">Min-El</h2>
+            <nav class="flex lg:flex-col overflow-x-auto whitespace-nowrap lg:space-y-2 pb-2 lg:pb-0">
+                <!-- Links -->
+                <a href="dashboard.html" class="flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-150">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i>
+                    Dashboard
+                </a>
+                <a href="sales.html" class="flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-150">
+                    <i data-lucide="dollar-sign" class="w-5 h-5 mr-3"></i>
+                    Sales & Revenue
+                </a>
+                <a href="inventory.html" class="flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-150">
+                    <i data-lucide="package" class="w-5 h-5 mr-3"></i>
+                    Inventory
+                </a>
+                <!-- ACTIVE LINK: Waste & Expenses -->
+                <a href="waste_expenses.html" class="active flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-150 border-l-4 border-primary lg:border-l-4 lg:border-primary">
+                    <i data-lucide="trash-2" class="w-5 h-5 mr-3"></i>
+                    Waste & Expenses
+                </a>
+                <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-150">
+                    <i data-lucide="users" class="w-5 h-5 mr-3"></i>
+                    Team
+                </a>
+                <a href="#" class="flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-150">
+                    <i data-lucide="book-open" class="w-5 h-5 mr-3"></i>
+                    Learning Hub
+                </a>
+                <a href="index.html" class="mt-4 flex items-center p-3 rounded-lg bg-red-600 hover:bg-red-700 transition duration-150 lg:mt-6">
+                    <i data-lucide="log-out" class="w-5 h-5 mr-3"></i>
+                    Logout
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 p-6 sm:p-10">
+            
+            <!-- Header Section -->
+            <header class="mb-8 border-b pb-4">
+                <h1 class="text-3xl font-semibold text-text-dark flex items-center">
+                    <i data-lucide="trash-2" class="w-7 h-7 mr-3 text-primary"></i>
+                    Waste & Expenses Management
+                </h1>
+                <p class="text-gray-500 mt-1">Track monthly operational expenses and monitor waste generation costs.</p>
+            </header>
+            
+            <!-- KPI Cards -->
+            <div class="grid gap-6 mb-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+                
+                <!-- KPI 1: Total Monthly Expense (MTD) -->
+                <div class="card bg-white p-6 rounded-xl shadow-lg border-t-4 border-danger">
+                    <h3 class="text-sm font-medium text-gray-500">Total Expenses (MTD)</h3>
+                    <p class="text-3xl font-bold text-danger mt-1" id="kpi-total-expense">ETB 65,000</p>
+                    <div class="flex items-center text-xs mt-2 text-danger">
+                        <i data-lucide="chevron-up" class="w-4 h-4 mr-1"></i>
+                        <span>+5% vs Last Month (Needs Attention)</span>
+                    </div>
+                </div>
+
+                <!-- KPI 2: Waste Cost % of Revenue -->
+                <div class="card bg-white p-6 rounded-xl shadow-lg border-t-4 border-warning">
+                    <h3 class="text-sm font-medium text-gray-500">Waste Cost % of Revenue</h3>
+                    <p class="text-3xl font-bold text-warning mt-1" id="kpi-waste-percent">3.5%</p>
+                    <div class="flex items-center text-xs mt-2 text-warning">
+                        <i data-lucide="trending-up" class="w-4 h-4 mr-1"></i>
+                        <span>Target: below 3.0%</span>
+                    </div>
+                </div>
+
+                <!-- KPI 3: Top Expense Category -->
+                <div class="card bg-white p-6 rounded-xl shadow-lg border-t-4 border-primary">
+                    <h3 class="text-sm font-medium text-gray-500">Largest Expense</h3>
+                    <p class="text-3xl font-bold text-primary mt-1" id="kpi-top-expense">Rent</p>
+                    <div class="flex items-center text-xs mt-2 text-gray-500">
+                        <i data-lucide="map-pin" class="w-4 h-4 mr-1"></i>
+                        <span>ETB 30,000 (46% of total)</span>
+                    </div>
+                </div>
+
+                <!-- KPI 4: Waste Disposals (MTD) -->
+                <div class="card bg-white p-6 rounded-xl shadow-lg border-t-4 border-accent">
+                    <h3 class="text-sm font-medium text-gray-500">Waste Disposal Events</h3>
+                    <p class="text-3xl font-bold text-accent mt-1" id="kpi-disposals">12 Events</p>
+                    <div class="flex items-center text-xs mt-2 text-accent">
+                        <i data-lucide="check-circle" class="w-4 h-4 mr-1"></i>
+                        <span>Avg. 3 per week</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Charting and Actions Section -->
+            <div class="grid lg:grid-cols-3 gap-6 mb-10">
+                
+                <!-- Expense Distribution Chart -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg">
+                    <h2 class="text-xl font-semibold text-text-dark mb-4 border-b pb-2">Monthly Expense Distribution</h2>
+                    <div class="h-80 flex items-center justify-center">
+                        <canvas id="expenseChart" class="max-h-72"></canvas>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-lg">
+                    <h2 class="text-xl font-semibold text-text-dark mb-4 border-b pb-2">Quick Actions</h2>
+                    <div class="space-y-4">
+                        <button class="w-full flex items-center justify-center px-4 py-2 bg-danger text-white font-medium rounded-lg hover:bg-red-600 transition duration-150 shadow-md">
+                            <i data-lucide="minus-circle" class="w-5 h-5 mr-2"></i>
+                            Record New Expense
+                        </button>
+                        <button class="w-full flex items-center justify-center px-4 py-2 bg-warning text-gray-800 font-medium rounded-lg hover:bg-yellow-400 transition duration-150 shadow-md">
+                            <i data-lucide="flame" class="w-5 h-5 mr-2"></i>
+                            Log Waste Event
+                        </button>
+                        <div class="pt-4">
+                            <label for="expense-type-filter" class="block text-sm font-medium text-gray-700 mb-2">Filter Type</label>
+                            <select id="expense-type-filter" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                <option>All Entries</option>
+                                <option>Operational Expenses</option>
+                                <option>Waste Costs</option>
+                                <option>Capital Expenditure</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Expense/Waste Entries Table -->
+            <div class="entries-section bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-semibold text-text-dark mb-4 border-b pb-2">Recent Expense/Waste Entries</h2>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-light-bg">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Amount (ETB)</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="expense-list">
+                            <!-- Example Data Rows -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-10-25</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">October Rent Payment</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Fixed Cost</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-right text-danger">30,000.00</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-primary/20 text-primary">Approved</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-10-24</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Broken Equipment Disposal</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Waste Cost</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-right text-warning">850.50</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-warning/20 text-warning">Reported</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-10-22</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Weekly Payroll (Oct 16-22)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Staff</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-right text-danger">15,000.00</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-accent/20 text-accent">Paid</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-10-21</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Electricity Bill</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Utilities</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-right text-danger">2,400.00</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-primary/20 text-primary">Approved</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- INTERNAL JAVASCRIPT -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // 1. Chart.js Initialization - Doughnut Chart for Expense Distribution
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('expenseChart');
+
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Rent', 'Payroll', 'Utilities', 'Inventory Waste', 'Other'],
+                        datasets: [{
+                            label: 'Expense Distribution (ETB)',
+                            data: [30000, 15000, 5500, 2500, 12000], // Example ETB values
+                            backgroundColor: [
+                                '#007bff', // Rent (Primary)
+                                '#28a745', // Payroll (Accent)
+                                '#ffc107', // Utilities (Warning)
+                                '#dc3545', // Waste (Danger)
+                                '#6c757d', // Other (Secondary)
+                            ],
+                            hoverOffset: 10
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                            },
+                            title: {
+                                display: false,
+                            }
+                        }
+                    }
+                });
+            }
+        });
+        
+        // 2. Placeholder for dynamic data fetching (e.g., from Firestore)
+        async function fetchExpenseData() {
+            // In a real application, this would fetch data from Firestore.
+            console.log("Attempting to fetch real-time expense and waste data...");
+            // Example of updating a KPI value:
+            // document.getElementById('kpi-total-expense').textContent = 'ETB ' + newTotal.toLocaleString();
+        }
+
+        fetchExpenseData();
+
+    </script>
+</body>
+</html>

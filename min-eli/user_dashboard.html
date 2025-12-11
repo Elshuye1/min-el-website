@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min-El | Dashboard</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Configure Tailwind for custom colors and use Poppins font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#007bff',
+                        'accent': '#28a745',
+                        'danger': '#dc3545',
+                        'warning': '#ffc107',
+                        'dark-bg': '#343a40',
+                        'light-bg': '#f8f9fa',
+                        'text-dark': '#343a40',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Link Poppins Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom scrollbar styling for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+        .sidebar a.active {
+            background-color: #495057;
+            border-left: 4px solid #007bff;
+        }
+    </style>
+</head>
+<body class="bg-light-bg font-sans min-h-screen flex antialiased">
+
+    <!-- Dashboard Container -->
+    <div class="flex flex-col lg:flex-row w-full">
+        
+        <!-- Sidebar Navigation -->
+        <div class="sidebar bg-dark-bg text-white w-full lg:w-64 flex flex-col p-4 shadow-xl z-10 lg:h-screen lg:sticky top-0">
+            <h2 class="text-2xl font-bold text-primary text-center mb-6 mt-2 hidden lg:block">Min-El</h2>
+            <nav class="flex lg:flex-col overflow-x-auto whitespace-nowrap lg:space-y-2 pb-2 lg:pb-0">
+                <a href="#" class="active flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-150 border-l-4 border-primary lg:border-l-4 lg:border-primary">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i>
+                    Dashboard
+                </a>
+                <!-- NOTE: The following links are placeholders and assume these files exist -->
+                <a href="/sales.html" class="flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-150">
+                    <i data-lucide="dollar-sign" class="w-5 h-5 mr-3"></i>
+                    Sales & Revenue
+                </a>
+                <a href="/inventory.html" class="flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-150">
+                    <i data-lucide="package" class="w-5 h-5 mr-3"></i>
+                    Inventory
+                </a>
+                   <a href="/waste_expenses.html" class="flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-150">
+                    <i data-lucide="trash-2" class="w-5 h-5 mr-3"></i>
+                    Waste & Expenses
+                </a>
+                <a href="/team.html"class="flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-150">
+                    <i data-lucide="users" class="w-5 h-5 mr-3"></i>
+                    Team
+                </a>
+                <a href="/learninghub.html" class="flex items-center p-3 rounded-lg hover:bg-gray-700 transition duration-150">
+                    <i data-lucide="book-open" class="w-5 h-5 mr-3"></i>
+                    Learning Hub
+                </a>
+                <a href="index.html" class="mt-4 flex items-center p-3 rounded-lg bg-red-600 hover:bg-red-700 transition duration-150 lg:mt-6">
+                    <i data-lucide="log-out" class="w-5 h-5 mr-3"></i>
+                    Logout
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 p-6 sm:p-10">
+            
+            <!-- Header Section -->
+            <header class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between border-b pb-4">
+                <div class="mb-4 md:mb-0">
+                    <h1 class="text-3xl font-semibold text-text-dark">Welcome back, Mintesnot Dev!</h1>
+                    <p class="text-gray-500 mt-1">My Business Enterprise (ETB)</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm font-medium text-gray-700">Current Time</p>
+                    <p id="current-date-time" class="text-lg font-bold text-primary"></p>
+                </div>
+            </header>
+            
+            <!-- Summary Cards Grid -->
+            <div class="grid gap-6 mb-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+                
+                <!-- Card 1: Sales -->
+                <div class="card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm font-medium text-gray-500">Today's Sales</h3>
+                        <i data-lucide="trending-up" class="w-5 h-5 text-primary"></i>
+                    </div>
+                    <p class="text-3xl font-bold text-primary mb-1">ETB 12,500</p>
+                    <p class="text-xs text-accent font-semibold">+5% from yesterday</p>
+                </div>
+
+                <!-- Card 2: Profit -->
+                <div class="card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm font-medium text-gray-500">Today's Profit</h3>
+                        <i data-lucide="wallet" class="w-5 h-5 text-accent"></i>
+                    </div>
+                    <!-- ID added for JavaScript calculation -->
+                    <p id="today-profit" class="text-3xl font-bold text-accent mb-1">ETB 4,800</p>
+                    <p class="text-xs text-gray-500">(15% Gross Margin)</p>
+                </div>
+
+                <!-- Card 3: Waste -->
+                <div class="card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm font-medium text-gray-500">Total Waste</h3>
+                        <i data-lucide="flame" class="w-5 h-5 text-danger"></i>
+                    </div>
+                    <p class="text-3xl font-bold text-danger mb-1">ETB 750</p>
+                    <p class="text-xs text-danger font-semibold">Review required!</p>
+                </div>
+
+                <!-- Card 4: Debt -->
+                <div class="card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm font-medium text-gray-500">Outstanding Debts</h3>
+                        <i data-lucide="alert-triangle" class="w-5 h-5 text-warning"></i>
+                    </div>
+                    <p class="text-3xl font-bold text-warning mb-1">ETB 54,000</p>
+                    <p class="text-xs text-warning font-semibold">2 alerts pending</p>
+                </div>
+                
+                <!-- Card 5: Tithing (10% of Profit) - NEW FEATURE -->
+                <div class="card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-2 border-green-500/50">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm font-medium text-gray-500">Tithing to GOD (10%)</h3>
+                        <i data-lucide="hand-heart" class="w-5 h-5 text-green-600"></i>
+                    </div>
+                    <!-- This amount will be calculated by the JavaScript function -->
+                    <p id="tithing-amount" class="text-3xl font-bold text-green-600 mb-1">Calculating...</p>
+                    <p id="tithing-base" class="text-xs text-gray-500 font-semibold">Based on Today's Profit</p>
+                </div>
+
+            </div>
+
+            <!-- Motivation Widget -->
+            <div class="motivation-widget bg-primary p-8 rounded-xl shadow-2xl text-white text-center mb-10 bg-opacity-95">
+                <h2 class="text-xl font-bold mb-4">Daily Motivation & Focus</h2>
+                <blockquote class="text-xl italic">
+                    "Success is not final; failure is not fatal: it is the courage to continue that counts."
+                </blockquote>
+                <small class="block mt-3 text-sm opacity-80">— Winston Churchill</small>
+            </div>
+
+            <!-- Analytics Placeholder -->
+            <div class="analytics-section bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-semibold text-text-dark mb-4 border-b pb-2">Operational Analytics</h2>
+                <div class="h-64 flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg">
+                    <p class="text-gray-500">Placeholder for Interactive Charts (e.g., Weekly Sales Trend, Waste Reduction Chart).</p>
+                </div>
+                <div class="mt-4 text-center">
+                    <button class="px-6 py-2 bg-primary text-white font-medium rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">
+                        Generate Full Report
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- INTERNAL JAVASCRIPT -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Function to update the current date and time
+        function updateDateTime() {
+            const now = new Date();
+            const dateOptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            
+            const dateStr = now.toLocaleDateString('en-US', dateOptions);
+            const timeStr = now.toLocaleTimeString('en-US', timeOptions);
+            
+            document.getElementById('current-date-time').textContent = `${dateStr} | ${timeStr}`;
+        }
+
+        // Function to calculate and display the 10% Tithing
+        function calculateTithing() {
+            // Retrieve profit from the DOM element (Card 2)
+            const todayProfitElement = document.getElementById('today-profit');
+            const tithingAmountElement = document.getElementById('tithing-amount');
+            const tithingBaseElement = document.getElementById('tithing-base'); // Use the new ID
+            
+            if (!todayProfitElement || !tithingAmountElement || !tithingBaseElement) {
+                console.error("Required profit or tithing elements not found in DOM.");
+                if(tithingAmountElement) tithingAmountElement.textContent = "Error";
+                return;
+            }
+
+            const todayProfitStr = todayProfitElement.textContent; // e.g., "ETB 4,800"
+            
+            // Use regex to strip non-numeric characters (commas, currency symbols, spaces)
+            // Note: If you expect decimal profits, adjust the regex to allow decimal point, e.g., /[^0-9.]/g
+            const profitValue = parseFloat(todayProfitStr.replace(/[^0-9]/g, ''));
+
+            if (isNaN(profitValue)) {
+                console.error("Could not parse profit value for tithing calculation.");
+                tithingAmountElement.textContent = "Error";
+                return;
+            }
+
+            const tithingRate = 0.10; // 10%
+            const tithingAmount = profitValue * tithingRate;
+
+            // Format the tithing amount back to currency string (ETB 480)
+            const formattedTithing = `ETB ${tithingAmount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+
+            tithingAmountElement.textContent = formattedTithing;
+            tithingBaseElement.textContent = `Based on ${todayProfitStr} Profit`;
+        }
+        
+        // --- LLM API Placeholder Structure (for future feature implementation) ---
+        // This function demonstrates how you would call the Gemini API to fetch a daily quote
+        async function fetchDailyQuote() {
+            const quoteContainer = document.querySelector('.motivation-widget blockquote');
+            const authorContainer = document.querySelector('.motivation-widget small');
+            const apiKey = ""; // Canvas will provide this if used in the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            const userQuery = "Provide a short, powerful, business-focused motivational quote, and specify the author.";
+            const systemPrompt = "You are a motivational coach. Respond with ONLY the quote followed by a hyphen and the author's name, like: 'Quote text - Author Name'. Do not include any other text, formatting, or introduction.";
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+
+            try {
+                // Add loading state
+                quoteContainer.textContent = "Loading today's wisdom...";
+                authorContainer.textContent = "";
+
+                let response = null;
+                let attempts = 0;
+                const maxAttempts = 3;
+
+                // Exponential backoff retry logic
+                while (attempts < maxAttempts) {
+                    try {
+                        response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (response.ok) break; 
+                        
+                        // Handle server errors with retry
+                        if (response.status >= 500) throw new Error(`Server error: ${response.status}`);
+                        
+                        // Break on client errors
+                        break; 
+
+                    } catch (error) {
+                        attempts++;
+                        if (attempts >= maxAttempts) throw error; 
+
+                        // Wait 2^attempts * 1000 milliseconds
+                        const delay = Math.pow(2, attempts) * 1000;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    }
+                }
+                
+                // Check if response is valid before proceeding
+                if (!response || !response.ok) {
+                    throw new Error(`API call failed after ${maxAttempts} attempts.`);
+                }
+
+                const result = await response.json();
+                const text = result?.candidates?.[0]?.content?.parts?.[0]?.text || "Failed to load quote.";
+
+                // Parse the response: "Quote - Author"
+                const parts = text.split(' - ');
+                const quote = parts[0].trim().replace(/^['"]|['"]$/g, ''); // Remove surrounding quotes
+                const author = parts.length > 1 ? `— ${parts[1].trim()}` : "Unknown";
+
+                quoteContainer.textContent = quote;
+                authorContainer.textContent = author;
+
+            } catch (error) {
+                console.error("Error fetching daily quote:", error);
+                // Fallback to a default quote on failure
+                // The hardcoded quote remains as the ultimate fallback in the HTML structure
+                quoteContainer.textContent = "Success is not final; failure is not fatal: it is the courage to continue that counts.";
+                authorContainer.textContent = "— Winston Churchill";
+            }
+        }
+
+        // Initial calls on load
+        // Set up the recurring time update first
+        setInterval(updateDateTime, 1000); 
+        updateDateTime(); 
+        
+        // Calculate tithing based on the hardcoded profit value
+        calculateTithing();
+
+        // Uncomment the line below to enable fetching the quote from the Gemini API on load
+        // fetchDailyQuote(); 
+
+    </script>
+</body>
+</html>

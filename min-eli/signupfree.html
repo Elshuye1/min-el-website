@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min-El V2 Sign Up | Start 14-Day Free Trial</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables (Consistent with Min-El Brand) --- */
+        :root {
+            --primary-color: #0069d9; 
+            --secondary-color: #f4f6f9; 
+            --dark-text: #212529; 
+            --light-text: #ffffff;
+            --accent-color: #28a745; 
+            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --border-color: #e9ecef;
+            --google-blue: #4285f4;
+        }
+
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--dark-text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; }
+        
+        /* --- CONTAINER FOR SPLIT LAYOUT --- */
+        .split-container {
+            display: flex;
+            width: 90%;
+            max-width: 1100px;
+            min-height: 600px;
+            background-color: var(--light-text);
+            border-radius: 15px;
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+        }
+        
+        /* --- 1. MARKETING/VALUE SIDE --- */
+        .value-prop-side {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary-color), #004c99);
+            color: var(--light-text);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        
+        .value-prop-side h2 {
+            font-size: 2.2em;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        
+        .value-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .value-list li {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .value-list i {
+            color: #ffc107; /* Bright gold/yellow checkmark */
+            margin-right: 12px;
+            font-size: 1.3em;
+        }
+        
+        .quote {
+            margin-top: 30px;
+            font-style: italic;
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+
+        /* --- 2. FORM SIDE --- */
+        .form-side {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo-link {
+            font-size: 1.6em;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .form-side h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        /* --- FORM STYLES --- */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: var(--dark-text);
+            font-size: 0.95em;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        
+        .password-helper {
+            font-size: 0.8em;
+            color: #6c757d;
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
+
+        /* --- CTA Button --- */
+        .cta-button {
+            background-color: var(--accent-color); 
+            color: var(--light-text);
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background-color: #1e7e34;
+        }
+        
+        /* --- Social Sign-up Button --- */
+        .social-btn-google {
+            background-color: var(--google-blue);
+            color: var(--light-text);
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            width: 100%;
+            font-weight: 500;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: opacity 0.3s;
+        }
+        
+        .social-btn-google:hover {
+            opacity: 0.9;
+        }
+        
+        .social-btn-google i {
+            margin-right: 10px;
+        }
+
+        .divider-text {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        .divider-text::before, .divider-text::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .divider-text::before {
+            left: 0;
+        }
+
+        .divider-text::after {
+            right: 0;
+        }
+
+        /* --- FOOTER & LOGIN LINK --- */
+        .alt-login {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.95em;
+        }
+
+        .alt-login a {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .trust-footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+        
+        .trust-footer a {
+            color: var(--primary-color);
+        }
+
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 900px) {
+            .split-container {
+                flex-direction: column;
+                width: 95%;
+                max-width: 600px;
+            }
+            .value-prop-side {
+                /* Make the value prop side shorter on mobile */
+                min-height: 200px;
+                padding: 30px;
+                text-align: center;
+                align-items: center;
+            }
+            .value-prop-side h2 {
+                font-size: 1.8em;
+            }
+            .value-list {
+                display: none; /* Hide detailed list on small screens for brevity */
+            }
+            .form-side {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="split-container">
+        
+        <div class="value-prop-side">
+            <i class="fas fa-rocket" style="font-size: 3em; color: #ffc107; margin-bottom: 20px;"></i>
+            <h2>Launch & Grow Your Enterprise, Secured.</h2>
+            
+            <ul class="value-list">
+                <li><i class="fas fa-check"></i> **Multilingual Management:** Full support for Amharic, English, and global languages.</li>
+                <li><i class="fas fa-check"></i> **AI-Powered Inventory:** Never run out of stock with smart, predictive alerts.</li>
+                <li><i class="fas fa-check"></i> **Enterprise Security (RLS):** Your data is isolated and protected at the row level.</li>
+                <li><i class="fas fa-check"></i> **Community & Networking:** Share successes and learn from global entrepreneurs.</li>
+            </ul>
+            
+            <p class="quote">"Min-El is the only platform that truly understands the multilingual needs of modern business." - **Entrepreneur Today**</p>
+        </div>
+
+        <div class="form-side">
+            <a href="index.html" class="logo-link">MIN-EL</a>
+
+            <h1>Create Your Free Account</h1>
+            
+            <button class="social-btn-google">
+                <i class="fab fa-google"></i> Continue with Google
+            </button>
+            
+            <div class="divider-text">OR SIGN UP WITH EMAIL</div>
+
+            <form action="/api/register" method="POST"> 
+                
+                <div class="form-group">
+                    <label for="businessName">Company Name</label>
+                    <input type="text" id="businessName" name="businessName" placeholder="Your Business Name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Work Email</label>
+                    <input type="email" id="email" name="email" placeholder="you@yourcompany.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Create Secure Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <p class="password-helper">Must be 8+ characters, including a number and a symbol.</p>
+                </div>
+                
+                 <div class="form-group">
+                    <label for="language">Primary Language</label>
+                    <select id="language" name="language" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1em; background-color: white;">
+                        <option value="en">English (Core)</option>
+                        <option value="am">አማርኛ - Amharic (Core)</option>
+                        <option value="" disabled>──────────</option>
+                        <option value="zh">Chinese (Mandarin)</option>
+                        <option value="es">Spanish</option>
+                        <option value="hi">Hindi</option>
+                        <option value="ar">Arabic</option>
+                        <option value="pt">Portuguese</option>
+                        <option value="bn">Bengali</option>
+                        <option value="ru">Russian</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="cta-button">
+                    <i class="fas fa-lock"></i> Start Free Trial (No Credit Card)
+                </button>
+            </form>
+
+            <div class="alt-login">
+                Already a member? <a href="/loginauth.html">Log In Here</a>
+            </div>
+            
+            <div class="trust-footer">
+                <p>By registering, you accept the Min-El <a href="/terms.html">Terms of Service</a> and <a href="/privecyandpolicy.html">Privacy Policy</a>.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

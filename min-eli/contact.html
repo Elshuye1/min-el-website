@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Min-El | Get in Touch with Our Team</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables (Must match index.html for consistency) --- */
+        :root {
+            --primary-color: #0069d9; 
+            --secondary-color: #f4f6f9; 
+            --dark-text: #212529; 
+            --light-text: #ffffff;
+            --accent-color: #28a745; 
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* --- GLOBAL & UTILITY STYLES (Keep consistent) --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- NAVIGATION BAR (Repeated from index.html) --- */
+        .navbar {
+            background-color: var(--light-text);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a:not(.cta-button) {
+            color: var(--dark-text);
+            font-weight: 600;
+            margin-left: 30px;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:not(.cta-button):hover {
+            color: var(--primary-color);
+        }
+
+        .cta-button {
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            margin-left: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #1e7e34; 
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hamburger Menu Icon - Mobile */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--dark-text);
+        }
+
+        /* --- MAIN CONTACT SECTION STYLES --- */
+        .contact-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .contact-section h1 {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .contact-section p {
+            font-size: 1.2em;
+            color: #6c757d;
+            margin-bottom: 50px;
+        }
+
+        .contact-grid {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start; /* Align elements to the top */
+        }
+
+        /* --- CONTACT FORM STYLES (Left Side) --- */
+        .contact-form {
+            flex: 2; /* Takes up more space */
+            background-color: var(--light-text);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        
+        .contact-form h2 {
+            font-size: 1.8em;
+            color: var(--dark-text);
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            box-sizing: border-box; /* Crucial for padding/width calculation */
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 105, 217, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* --- CONTACT INFO STYLES (Right Side) --- */
+        .contact-info {
+            flex: 1; /* Takes up less space */
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-info h2 {
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ffc107; /* Yellow highlight for contrast */
+            padding-bottom: 10px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .info-item i {
+            font-size: 1.5em;
+            margin-right: 15px;
+            color: #ffc107; /* Yellow icon color */
+        }
+
+        .info-item p {
+            margin: 0;
+            font-size: 1.1em;
+        }
+
+        .info-item a {
+            color: var(--light-text);
+            transition: color 0.3s;
+        }
+
+        .info-item a:hover {
+            color: #ffc107;
+        }
+
+        /* --- FOOTER (Repeated from index.html) --- */
+        .footer {
+            background-color: var(--dark-text);
+            color: var(--secondary-color);
+            padding: 40px 0;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: var(--primary-color);
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--light-text);
+        }
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+             /* Mobile Navigation Styles (Assuming app.js is linked) */
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute; top: 75px; left: 0; right: 0; flex-direction: column;
+                background-color: var(--light-text); box-shadow: var(--shadow-light);
+                max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out;
+            }
+            .nav-links.active { max-height: 400px; padding: 10px 0; }
+            .nav-links a { margin: 0; padding: 15px 20px; width: 100%; text-align: center; border-bottom: 1px solid #f0f0f0; }
+
+            .contact-grid {
+                flex-direction: column; /* Stack vertically on small screens */
+            }
+
+            .contact-section h1 {
+                font-size: 2.5em;
+            }
+
+            .contact-form, .contact-info {
+                width: 100%;
+                margin: 0 auto;
+            }
+            
+            .contact-form {
+                margin-bottom: 30px; /* Add spacing between stacked elements */
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">MIN-EL</a>
+            
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html#features">Features</a> 
+                <a href="/aboutus.html">About Us</a>
+                <a href="/communty.html">Community</a>
+                <a href="/privecyandpolicy.html">Privacy & Policy</a>
+                <a href="/language.html">Language</a>
+                <a href="/loginauth.html" class="cta-button">Sign Up / Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="contact-section">
+        <div class="container">
+            <h1>We'd Love to Hear From You</h1>
+            <p>Whether you have a sales inquiry, a support request, or want to partner, we're here to help. </p>
+            
+            <div class="contact-grid">
+                
+                <div class="contact-form">
+                    <h2>Send us a message</h2>
+                    <form action="/submit-contact-form" method="POST"> 
+                        
+                        <div class="form-group">
+                            <label for="name">Your Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="cta-button" style="width: 100%; margin-left: 0;">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h2>Reach Out Directly</h2>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <p>General Inquiries:</p>
+                            <a href="mailto:info@minel.com">info@minel.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-headset"></i>
+                        <div>
+                            <p>Support Team:</p>
+                            <a href="mailto:support@minel.com">support@minel.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <p>Call Us:</p>
+                            <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <p>Headquarters:</p>
+                            <p>123 Business Blvd, Suite 400, Global City</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Min-El Platform. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privecyandpolicy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/contact.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="app.js"></script>
+
+</body>
+</html>

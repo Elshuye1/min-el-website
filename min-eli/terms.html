@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min-El Terms of Service | Legal Agreement</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables (Consistent with Min-El Brand) --- */
+        :root {
+            --primary-color: #0069d9; 
+            --secondary-color: #f4f6f9; 
+            --dark-text: #212529; 
+            --light-text: #ffffff;
+            --accent-color: #28a745; 
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --text-color: #495057;
+        }
+
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        a { text-decoration: none; }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- NAVIGATION BAR (Copied for consistency) --- */
+        .navbar {
+            background-color: var(--light-text);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8em; font-weight: 800; color: var(--primary-color); text-transform: uppercase; }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { 
+            color: var(--dark-text); font-weight: 600; margin-left: 30px; 
+            position: relative; transition: color 0.3s;
+        }
+        .cta-button { 
+            background-color: var(--accent-color); color: var(--light-text); 
+            padding: 10px 20px; border-radius: 6px; font-weight: 600; 
+            transition: background-color 0.3s; margin-left: 20px;
+        }
+        .menu-toggle { display: none; font-size: 1.5em; cursor: pointer; }
+
+        /* --- TERMS HEADER --- */
+        .terms-header {
+            background-color: var(--light-text);
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .terms-header h1 {
+            font-size: 3em;
+            color: var(--dark-text);
+            margin-bottom: 5px;
+        }
+        
+        .terms-header p {
+            font-size: 1.1em;
+            color: var(--text-color);
+            margin-top: 0;
+        }
+        
+        /* --- MAIN TERMS CONTENT --- */
+        .terms-content {
+            padding: 60px 0;
+            display: flex;
+            gap: 40px;
+        }
+        
+        /* Left Sidebar: Table of Contents (TOC) */
+        .terms-toc {
+            flex: 1; 
+            position: sticky;
+            top: 100px; 
+            max-height: 80vh;
+            padding: 20px;
+            background-color: var(--light-text);
+            border-radius: 8px;
+            box-shadow: var(--shadow-light);
+            overflow-y: auto;
+        }
+        
+        .terms-toc h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .terms-toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .terms-toc li {
+            margin-bottom: 10px;
+        }
+        
+        .terms-toc a {
+            color: var(--dark-text);
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: color 0.2s;
+            display: block;
+        }
+
+        .terms-toc a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* Right Content: Terms Text */
+        .terms-text {
+            flex: 3;
+        }
+        
+        .terms-text h2 {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-top: 40px;
+            padding-top: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .terms-text h3 {
+            font-size: 1.4em;
+            color: var(--dark-text);
+            margin-top: 30px;
+            font-weight: 600;
+        }
+        
+        .terms-text ul {
+            padding-left: 20px;
+        }
+
+        .terms-text li {
+            margin-bottom: 10px;
+        }
+
+        /* --- FOOTER (Copied for consistency) --- */
+        .footer {
+            background-color: var(--dark-text);
+            color: var(--secondary-color);
+            padding: 40px 0;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: var(--primary-color);
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 992px) {
+            .terms-content {
+                flex-direction: column;
+            }
+            .terms-toc {
+                position: static;
+                max-height: none;
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .terms-header h1 { font-size: 2.5em; }
+            .terms-text h2 { font-size: 1.8em; }
+            .menu-toggle { display: block; }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">MIN-EL</a>
+            
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html#features">Features</a> 
+                <a href="/aboutus.html">About Us</a>
+                <a href="/communty.html">Community</a>
+                <a href="/privecyandpolicy.html">Privacy & Policy</a>
+                <a href="/language.html">Language</a>
+                <a href="/loginauth.html" class="cta-button">Sign Up / Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="terms-header">
+        <div class="container">
+            <h1>Min-El Terms of Service Agreement</h1>
+            <p>Effective Date: December 11, 2025</p>
+        </div>
+    </div>
+
+    <main class="terms-content container">
+        
+        <aside class="terms-toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#acceptance">1. Acceptance of Terms</a></li>
+                <li><a href="#registration">2. Account Registration and Eligibility</a></li>
+                <li><a href="#subscriptions">3. Subscriptions and Payment</a></li>
+                <li><a href="#community_rules">4. Community Content and Conduct Rules</a></li>
+                <li><a href="#intellectual_property">5. Intellectual Property Rights</a></li>
+                <li><a href="#termination">6. Termination of Service</a></li>
+                <li><a href="#disclaimer">7. Disclaimer of Warranties</a></li>
+                <li><a href="#limitation">8. Limitation of Liability</a></li>
+                <li><a href="#governing_law">9. Governing Law</a></li>
+                <li><a href="#contact">10. Contact Information</a></li>
+            </ul>
+        </aside>
+
+        <section class="terms-text">
+            
+            <h2 id="acceptance">1. Acceptance of Terms</h2>
+            <p>By accessing or using the Min-El Platform, you agree to be bound by these Terms of Service. If you disagree with any part of the terms, you may not access the service. These Terms apply to all visitors, users, and others who wish to access or use the Service.</p>
+
+            <h2 id="registration">2. Account Registration and Eligibility</h2>
+            <p>To use the core features of Min-El, you must register for an account and provide accurate and complete information. You must be at least 18 years of age or the age of legal majority in your jurisdiction to form a binding contract with Min-El.</p>
+            
+            <h2 id="subscriptions">3. Subscriptions and Payment</h2>
+            
+            <h3>3.1. Free Trial</h3>
+            <p>Min-El offers a free trial period. You will not be charged during the trial. To continue using the service after the trial, you must subscribe to a paid plan.</p>
+            
+            <h3>3.2. Billing and Renewals</h3>
+            <p>Subscriptions are billed on a recurring basis. You will be billed in advance on a periodic and recurring basis. Min-El reserves the right to change its fees at any time upon notice to you.</p>
+
+            <h2 id="community_rules">4. Community Content and Conduct Rules</h2>
+            <p>The Min-El Community feature allows users to post videos, photos, and letters. You are solely responsible for all content posted under your account.</p>
+            
+            <h3>4.1. Prohibited Content</h3>
+            <p>You agree not to post, upload, transmit, or otherwise make available any content that is unlawful, harmful, defamatory, obscene, harassing, or promotes violence or discrimination based on race, gender, religion, or nationality.</p>
+            
+            <h3>4.2. Moderation and Removal</h3>
+            <p>Min-El reserves the right, but not the obligation, to moderate all community content and remove any content that violates these rules without prior notice.</p>
+            
+            <h2 id="intellectual_property">5. Intellectual Property Rights</h2>
+            <p>The Service, and all original content (excluding content provided by users), features, and functionality are and will remain the exclusive property of Min-El and its licensors.</p>
+            
+            <h3>5.1. User Content License</h3>
+            <p>By posting content to the Community, you grant Min-El a worldwide, non-exclusive, royalty-free license to use, reproduce, modify, publish, and distribute that content on and through the Service, strictly for the purpose of operating and promoting the Min-El platform.</p>
+
+            <h2 id="termination">6. Termination of Service</h2>
+            <p>Min-El may terminate or suspend your account immediately, without prior notice or liability, if you breach the Terms, particularly those related to Prohibited Content or illegal activity.</p>
+            
+            <h2 id="disclaimer">7. Disclaimer of Warranties</h2>
+            <p>Your use of the Service is at your sole risk. The Service is provided on an "AS IS" and "AS AVAILABLE" basis, without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability or fitness for a particular purpose.</p>
+
+            <h2 id="limitation">8. Limitation of Liability</h2>
+            <p>In no event shall Min-El, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of the Service.</p>
+
+            <h2 id="governing_law">9. Governing Law</h2>
+            <p>These Terms shall be governed and construed in accordance with the laws of the jurisdiction where Min-El is legally registered, without regard to its conflict of law provisions.</p>
+
+            <h2 id="contact">10. Contact Information</h2>
+            <p>For any legal questions or clarifications regarding these Terms of Service, please contact us:</p>
+            <p>Email: <a href="mailto:legal@minel.com" style="color: var(--primary-color);">legal@minel.com</a></p>
+            <p>Address: Min-El Legal Department, Global Headquarters.</p>
+
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Min-El Platform. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privecyandpolicy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/contact.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="app.js"></script>
+
+</body>
+</html>
