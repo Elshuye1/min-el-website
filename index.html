@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min-El | Secure Business Management Platform - Start Your Free Trial</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables: Easier to maintain and customize --- */
+        :root {
+            --primary-color: #0069d9; /* Deep Min-El Blue */
+            --secondary-color: #f4f6f9; /* Light, slightly off-white background */
+            --dark-text: #212529; /* Near-black for excellent contrast */
+            --light-text: #ffffff;
+            --accent-color: #28a745; /* Vibrant Green for success/CTA buttons */
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; }
+        
+        /* Utility container to limit width and center content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- NAVIGATION BAR --- */
+        .navbar {
+            background-color: var(--light-text);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Lighter shadow for trusted feel */
+            padding: 15px 0;
+            position: sticky; /* Sticky nav for better UX */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 800; /* Extra bold logo */
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a:not(.cta-button) {
+            color: var(--dark-text);
+            font-weight: 600;
+            margin-left: 30px;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        /* Underline on hover effect */
+        .nav-links a:not(.cta-button)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:not(.cta-button):hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a:not(.cta-button):hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu Icon */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--dark-text);
+        }
+
+        /* --- CTA BUTTON GLOBAL STYLE --- */
+        .cta-button {
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            margin-left: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #1e7e34; /* Darker accent on hover */
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* --- HERO SECTION (EYE-CATCHING AREA) --- */
+        .hero {
+            /* Background pattern for creativity and depth */
+            background: var(--primary-color); 
+            background-image: radial-gradient(circle at 100% 100%, #0056b3 0, transparent 40%), 
+                              radial-gradient(circle at 0% 0%, #0056b3 0, transparent 40%);
+            color: var(--light-text);
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.8em;
+            margin-bottom: 20px;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Special styling for the main hero CTA */
+        .hero .cta-button {
+            background-color: #ffc107; /* Bright Yellow Accent */
+            color: var(--dark-text);
+            padding: 18px 40px;
+            font-size: 1.2em;
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Strong depth */
+        }
+
+        .hero .cta-button:hover {
+            background-color: #e0a800;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-subtext {
+            margin-top: 20px; 
+            font-size: 0.95em; 
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* --- FEATURES SECTION --- */
+        .features {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.8em;
+            margin-bottom: 70px;
+            color: var(--dark-text);
+            font-weight: 700;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--light-text);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Light default shadow */
+            text-align: center; /* Center content in cards */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px); /* Strong, professional lift */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Deep shadow on hover */
+        }
+        
+        /* Integrated Icon Styling */
+        .feature-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color); 
+            color: var(--light-text);
+            border-radius: 50%;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .feature-card p {
+            color: #6c757d; /* Soft grey for descriptive text */
+        }
+        
+        /* --- FOOTER --- */
+        .footer {
+            background-color: var(--dark-text);
+            color: var(--secondary-color);
+            padding: 40px 0;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: var(--primary-color);
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--light-text);
+        }
+        
+        .footer p {
+            margin-bottom: 15px;
+        }
+
+
+        /* --- RESPONSIVENESS (Mobile-First approach with specific breakpoints) --- */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3em;
+            }
+
+            .nav-links a:not(.cta-button) {
+                margin-left: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-content {
+                justify-content: space-between;
+            }
+            
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+            }
+
+            .nav-links {
+                /* Mobile Menu Styles */
+                position: absolute;
+                top: 75px; /* Adjust based on navbar height */
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background-color: var(--light-text);
+                box-shadow: var(--shadow-light);
+                border-top: 1px solid #eee;
+                max-height: 0; /* Hidden by default */
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+            }
+            
+            .nav-links.active {
+                max-height: 400px; /* Visible when active */
+                padding: 10px 0;
+            }
+
+            .nav-links a {
+                margin: 0;
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+            
+            .nav-links a:not(.cta-button)::after {
+                display: none; /* Hide underline on mobile for cleaner look */
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+            
+            .features h2 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">MIN-EL</a>
+            
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="nav-links" id="nav-links">
+                <a href="#features">Features</a> 
+                <a href="/aboutus.html">About Us</a>
+                <a href="/communty.html">Community</a>
+                <a href="/privecyandpolicy.html">Privacy & Policy</a>
+                <a href="/language.html">Language</a>
+                <a href="/loginauth.html" class="cta-button">Sign Up / Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Secure Your Success. Grow Your Business.</h1>
+            <p>Min-El is the scalable, multilingual platform for managing sales, expenses, and motivating your team.</p>
+            <a href="/signupfree.html" class="cta-button">Start Your Free Trial Today</a>
+            <p class="hero-subtext">No credit card required. Instantly deploy your secure workspace.</p>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Everything You Need in One Secure Platform</h2>
+            
+            <div class="feature-grid">
+                
+                <div class="feature-card">
+                    <span class="feature-icon"><i class="fas fa-chart-line"></i></span>
+                    <h3>Real-Time Operations Dashboard</h3>
+                    <p>Track daily sales, profits, expenses, and waste instantly. Make data-driven decisions on the spot.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon"><i class="fas fa-lock"></i></span>
+                    <h3>Enterprise-Grade Security</h3>
+                    <p>Your data is protected by Row-Level Security (RLS) and encryption. Isolation guaranteed.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon"><i class="fas fa-graduation-cap"></i></span>
+                    <h3>Multilingual Learning Hub</h3>
+                    <p>Access motivational content, business courses, and community sharing in Amharic and English.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon"><i class="fas fa-warehouse"></i></span>
+                    <h3>Smart Inventory & Alerts</h3>
+                    <p>Manage stock levels, cost prices, and receive automatic alerts before you run out of key products.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Min-El Platform. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privecyandpolicy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/contact.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min-El | Select Your Language</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables (Consistent with Min-El Brand) --- */
+        :root {
+            --primary-color: #0069d9; 
+            --secondary-color: #f4f6f9; 
+            --dark-text: #212529; 
+            --light-text: #ffffff;
+            --accent-color: #28a745; 
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-color: #e9ecef;
+        }
+
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- NAVIGATION BAR (Copied for consistency) --- */
+        .navbar {
+            background-color: var(--light-text);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8em; font-weight: 800; color: var(--primary-color); text-transform: uppercase; }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { 
+            color: var(--dark-text); font-weight: 600; margin-left: 30px; 
+            position: relative; transition: color 0.3s;
+        }
+        .cta-button { 
+            background-color: var(--accent-color); color: var(--light-text); 
+            padding: 10px 20px; border-radius: 6px; font-weight: 600; 
+            transition: background-color 0.3s; margin-left: 20px;
+        }
+        .menu-toggle { display: none; font-size: 1.5em; cursor: pointer; }
+
+
+        /* --- LANGUAGE PAGE HEADER --- */
+        .language-header {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .language-header h1 {
+            font-size: 2.8em;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .language-header p {
+            font-size: 1.1em;
+            color: #6c757d;
+        }
+        
+        /* --- CORE MIN-EL LANGUAGES (Prominent Display) --- */
+        .core-languages {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .core-item {
+            text-align: center;
+            padding: 20px 30px;
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            transition: background-color 0.3s, transform 0.2s;
+            cursor: pointer;
+            width: 200px;
+        }
+
+        .core-item:hover {
+            background-color: #e6f0ff; /* Light blue hover */
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 105, 217, 0.2);
+        }
+
+        .flag-icon {
+            font-size: 3.5em; /* Large icons for core languages */
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .core-item h3 {
+            margin: 0;
+            font-size: 1.4em;
+            color: var(--dark-text);
+        }
+        
+        .core-item p {
+            font-size: 0.9em;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin: 5px 0 0 0;
+        }
+
+        /* --- GLOBAL LANGUAGE GRID --- */
+        .global-languages {
+            padding: 30px 0 60px;
+        }
+        
+        .global-languages h2 {
+            text-align: center;
+            color: var(--dark-text);
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .language-card {
+            background-color: var(--light-text);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            transition: box-shadow 0.2s, background-color 0.2s;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .language-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #f0f0f0;
+        }
+
+        .language-card .flag-emoji {
+            font-size: 2.2em; /* Standard size for the grid */
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .language-card p {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1em;
+            color: var(--dark-text);
+        }
+        
+        .language-card span {
+            display: block;
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+
+        /* --- FOOTER (Consistent) --- */
+        .footer {
+            background-color: var(--dark-text);
+            color: var(--secondary-color);
+            padding: 40px 0;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: var(--primary-color);
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .core-languages {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .core-item {
+                width: 80%;
+                margin: 0 auto;
+            }
+            .language-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            /* Mobile Nav Styles (Assume app.js handles the toggle) */
+            .menu-toggle { display: block; }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">MIN-EL</a>
+            
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html#features">Features</a> 
+                <a href="/aboutus.html">About Us</a>
+                <a href="/communty.html">Community</a>
+                <a href="/privecyandpolicy.html">Privacy & Policy</a>
+                <a href="/language.html">Language</a> <a href="/loginauth.html" class="cta-button">Sign Up / Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="language-header">
+        <div class="container">
+            <h1>Select Your Preferred Language</h1>
+            <p>Min-El is committed to providing a fully native experience for your business management and community interaction.</p>
+        </div>
+    </div>
+
+    <section class="core-languages container">
+        
+        <a href="?lang=en" class="core-item">
+            <span class="flag-icon" style="font-size: 3.5em;">🇬🇧</span>
+            <h3>English</h3>
+            <p>Fully Supported</p>
+        </a>
+        
+        <a href="?lang=am" class="core-item">
+            <span class="flag-icon" style="font-size: 3.5em;">🇪🇹</span> 
+            <h3>አማርኛ</h3>
+            <p>Fully Supported</p>
+        </a>
+
+    </section>
+
+    <section class="global-languages container">
+        <h2>Global Languages & Regional Support</h2>
+        
+        <div class="language-grid">
+            
+            <a href="?lang=zh" class="language-card">
+                <span class="flag-emoji">🇨🇳</span>
+                <p>Chinese (Mandarin)</p>
+                <span>Full support coming soon</span>
+            </a>
+
+            <a href="?lang=es" class="language-card">
+                <span class="flag-emoji">🇪🇸</span>
+                <p>Spanish</p>
+                <span>Core interface supported</span>
+            </a>
+
+            <a href="?lang=ar" class="language-card">
+                <span class="flag-emoji">🇸🇦</span>
+                <p>Arabic</p>
+                <span>Core interface supported</span>
+            </a>
+
+            <a href="?lang=hi" class="language-card">
+                <span class="flag-emoji">🇮🇳</span>
+                <p>Hindi</p>
+                <span>Community content supported</span>
+            </a>
+
+            <a href="?lang=pt" class="language-card">
+                <span class="flag-emoji">🇧🇷</span>
+                <p>Portuguese</p>
+                <span>Core interface supported</span>
+            </a>
+
+            <a href="?lang=fr" class="language-card">
+                <span class="flag-emoji">🇫🇷</span>
+                <p>French</p>
+                <span>Core interface supported</span>
+            </a>
+
+            <a href="?lang=de" class="language-card">
+                <span class="flag-emoji">🇩🇪</span>
+                <p>German</p>
+                <span>Limited support</span>
+            </a>
+            
+            <a href="?lang=ru" class="language-card">
+                <span class="flag-emoji">🇷🇺</span>
+                <p>Russian</p>
+                <span>Community content supported</span>
+            </a>
+
+            <a href="?lang=ja" class="language-card">
+                <span class="flag-emoji">🇯🇵</span>
+                <p>Japanese</p>
+                <span>Limited support</span>
+            </a>
+            
+            <a href="?lang=ko" class="language-card">
+                <span class="flag-emoji">🇰🇷</span>
+                <p>Korean</p>
+                <span>Limited support</span>
+            </a>
+            
+            <a href="?lang=tr" class="language-card">
+                <span class="flag-emoji">🇹🇷</span>
+                <p>Turkish</p>
+                <span>Limited support</span>
+            </a>
+
+             <a href="?lang=sw" class="language-card">
+                <span class="flag-emoji">🇹🇿</span>
+                <p>Swahili</p>
+                <span>Planning Stage</span>
+            </a>
+
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Min-El Platform. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privecyandpolicy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/contact.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="app.js"></script>
+
+</body>
+</html>

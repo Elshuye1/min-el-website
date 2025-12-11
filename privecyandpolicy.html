@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min-El Privacy Policy and Terms of Use</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables (Consistent with Min-El Brand) --- */
+        :root {
+            --primary-color: #0069d9; 
+            --secondary-color: #f4f6f9; 
+            --dark-text: #212529; 
+            --light-text: #ffffff;
+            --accent-color: #28a745; 
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --text-color: #495057; /* Slightly softer text for readability */
+        }
+
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.8; /* Increased line-height for easier reading of legal text */
+        }
+
+        a { text-decoration: none; }
+        
+        .container {
+            max-width: 1000px; /* Optimal width for legal text readability */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- NAVIGATION BAR (Copied for consistency) --- */
+        .navbar {
+            background-color: var(--light-text);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8em; font-weight: 800; color: var(--primary-color); text-transform: uppercase; }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { 
+            color: var(--dark-text); font-weight: 600; margin-left: 30px; 
+            position: relative; transition: color 0.3s;
+        }
+        .cta-button { 
+            background-color: var(--accent-color); color: var(--light-text); 
+            padding: 10px 20px; border-radius: 6px; font-weight: 600; 
+            transition: background-color 0.3s; margin-left: 20px;
+        }
+        .menu-toggle { display: none; font-size: 1.5em; cursor: pointer; }
+
+        /* --- POLICY HEADER --- */
+        .policy-header {
+            background-color: var(--light-text);
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .policy-header h1 {
+            font-size: 3em;
+            color: var(--dark-text);
+            margin-bottom: 5px;
+        }
+        
+        .policy-header p {
+            font-size: 1.1em;
+            color: var(--text-color);
+            margin-top: 0;
+        }
+        
+        /* --- MAIN POLICY CONTENT --- */
+        .policy-content {
+            padding: 60px 0;
+            display: flex;
+            gap: 40px;
+        }
+        
+        /* Left Sidebar: Table of Contents (TOC) */
+        .policy-toc {
+            flex: 1; /* Takes up less space */
+            position: sticky;
+            top: 100px; /* Stays below the navbar */
+            max-height: 80vh;
+            padding: 20px;
+            background-color: var(--light-text);
+            border-radius: 8px;
+            box-shadow: var(--shadow-light);
+            overflow-y: auto;
+        }
+        
+        .policy-toc h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .policy-toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .policy-toc li {
+            margin-bottom: 10px;
+        }
+        
+        .policy-toc a {
+            color: var(--dark-text);
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: color 0.2s;
+            display: block;
+        }
+
+        .policy-toc a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* Right Content: Policy Text */
+        .policy-text {
+            flex: 3; /* Takes up more space */
+        }
+        
+        .policy-text h2 {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-top: 40px;
+            padding-top: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .policy-text h3 {
+            font-size: 1.4em;
+            color: var(--dark-text);
+            margin-top: 30px;
+            font-weight: 600;
+        }
+        
+        .policy-text ul {
+            padding-left: 20px;
+        }
+
+        .policy-text li {
+            margin-bottom: 10px;
+        }
+
+        /* --- FOOTER (Copied for consistency) --- */
+        .footer {
+            background-color: var(--dark-text);
+            color: var(--secondary-color);
+            padding: 40px 0;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: var(--primary-color);
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 992px) {
+            .policy-content {
+                flex-direction: column; /* Stack TOC and content vertically */
+            }
+            .policy-toc {
+                position: static; /* Remove sticky on mobile */
+                max-height: none;
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .policy-header h1 { font-size: 2.5em; }
+            .policy-text h2 { font-size: 1.8em; }
+            /* Mobile Nav Styles (Assume app.js handles the toggle) */
+            .menu-toggle { display: block; }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">MIN-EL</a>
+            
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html#features">Features</a> 
+                <a href="/aboutus.html">About Us</a>
+                <a href="/communty.html">Community</a>
+                <a href="/privecyandpolicy.html">Privacy & Policy</a> <a href="/language.html">Language</a>
+                <a href="/loginauth.html" class="cta-button">Sign Up / Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="policy-header">
+        <div class="container">
+            <h1>Min-El Privacy Policy & Terms of Use</h1>
+            <p>Last Updated: December 11, 2025</p>
+        </div>
+    </div>
+
+    <main class="policy-content container">
+        
+        <aside class="policy-toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#introduction">1. Introduction</a></li>
+                <li><a href="#data_we_collect">2. Data We Collect</a></li>
+                <li><a href="#how_we_use_data">3. How We Use Your Data</a></li>
+                <li><a href="#data_sharing">4. Data Sharing and Disclosure</a></li>
+                <li><a href="#security_measures">5. Security Measures</a></li>
+                <li><a href="#user_rights">6. Your Rights and Choices</a></li>
+                <li><a href="#ad_revenue_sharing">7. Community & Ad Revenue Sharing</a></li>
+                <li><a href="#changes">8. Changes to this Policy</a></li>
+                <li><a href="#contact_info">9. Contact Information</a></li>
+            </ul>
+        </aside>
+
+        <section class="policy-text">
+            
+            <h2 id="introduction">1. Introduction</h2>
+            <p>Welcome to the Min-El Platform. We are committed to protecting your personal data and your business information with the highest standards of security. This policy outlines how we collect, use, and protect your data across our entire platform, including the Dashboard, Learning Hub, and Community features.</p>
+
+            <h2 id="data_we_collect">2. Data We Collect</h2>
+            
+            <h3>2.1. Information You Provide</h3>
+            <p>This includes data you submit when registering or using our services:</p>
+            <ul>
+                <li>**Business Identity:** Business Name, Registration Details, Industry Type.</li>
+                <li>**Personal Identity:** Full Name, Email Address, Password (encrypted), and Primary Language.</li>
+                <li>**Financial Data:** Sales Records, Expense Reports, Inventory Levels, and Cost Prices (for business management).</li>
+            </ul>
+            
+            <h3>2.2. Data Collected Automatically</h3>
+            <p>When you use the Community or Dashboard, we automatically record:</p>
+            <ul>
+                <li>**Usage Data:** Posts, Videos, Photos, Comments, Likes, Shares, Views, and activity logs.</li>
+                <li>**Technical Data:** IP address, browser type, operating system, and unique device identifiers.</li>
+                <li>**Location Data:** General location based on your IP address for security and regional content purposes.</li>
+            </ul>
+
+            <h2 id="how_we_use_data">3. How We Use Your Data</h2>
+            <p>We use your data strictly to operate and improve the Min-El service:</p>
+            <ul>
+                <li>To provide the Core Platform functionality (Dashboard, Inventory, Learning Hub).</li>
+                <li>To display your content and engage with the Community (posts, videos, etc.).</li>
+                <li>To ensure security, detect fraud, and prevent unauthorized access using Row-Level Security (RLS).</li>
+                <li>For internal research and statistical analysis to improve our algorithms and content offerings.</li>
+            </ul>
+            
+            <h2 id="data_sharing">4. Data Sharing and Disclosure</h2>
+            <p>Your business data is **never** shared externally. We may share limited personal data only when necessary:</p>
+            <ul>
+                <li>**With Service Providers:** Third parties who provide essential services (e.g., cloud hosting, email delivery) under strict confidentiality agreements.</li>
+                <li>**Legal Compliance:** When legally required by government authorities or court orders.</li>
+                <li>**Community Content:** Your username and public posts/videos are visible to other community members.</li>
+            </ul>
+
+            <h2 id="security_measures">5. Security Measures</h2>
+            <p>Min-El employs rigorous security protocols, including:</p>
+            <ul>
+                <li>Encryption of data both in transit and at rest.</li>
+                <li>Implementation of Row-Level Security (RLS) to isolate and protect each user's financial data.</li>
+                <li>Regular security audits and compliance checks.</li>
+            </ul>
+            
+            <h2 id="user_rights">6. Your Rights and Choices</h2>
+            <p>You have the right to access, correct, delete, or limit the use of your personal data. You can exercise these rights through your profile settings or by contacting us.</p>
+
+            <h2 id="ad_revenue_sharing">7. Community & Ad Revenue Sharing</h2>
+            <p>Min-El runs advertisements from partners (including Google AdSense) on the Community page. These policies govern the advertising structure:</p>
+            <ul>
+                <li>**Content Ownership:** You retain all rights to the videos, photos, and letters you post.</li>
+                <li>**Ad Placement:** By posting public content, you grant Min-El a worldwide, royalty-free license to display advertisements adjacent to or within your content.</li>
+                <li>**Monetization:** Any revenue generated from general ad spaces is solely for Min-El. Specific programs for revenue sharing with content creators will be announced separately.</li>
+            </ul>
+
+            <h2 id="changes">8. Changes to this Policy</h2>
+            <p>We may update this policy periodically. We will notify you of any material changes by email or through a prominent notice on our platform before the changes take effect.</p>
+
+            <h2 id="contact_info">9. Contact Information</h2>
+            <p>For any questions or concerns regarding this policy, please contact us:</p>
+            <p>Email: <a href="mailto:privacy@minel.com" style="color: var(--primary-color);">privacy@minel.com</a></p>
+            <p>Address: Min-El Legal Department, Global Headquarters.</p>
+
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Min-El Platform. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privecyandpolicy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/contact.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="app.js"></script>
+
+</body>
+</html>

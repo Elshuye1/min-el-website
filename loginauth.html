@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to Min-El | Secure Account Access</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables (Consistent with Min-El Brand) --- */
+        :root {
+            --primary-color: #0069d9; 
+            --secondary-color: #f4f6f9; 
+            --dark-text: #212529; 
+            --light-text: #ffffff;
+            --accent-color: #28a745; 
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --google-blue: #4285f4;
+            --facebook-blue: #1877f2;
+            --apple-black: #000000;
+        }
+
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--dark-text);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; }
+
+        /* --- LOGIN CONTAINER --- */
+        .auth-container {
+            width: 100%;
+            max-width: 400px; /* Slightly narrower for a cleaner login feel */
+            background-color: var(--light-text);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .logo-link {
+            display: block;
+            margin-bottom: 25px;
+            font-size: 2em;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+        
+        .auth-container h1 {
+            font-size: 1.8em;
+            color: var(--dark-text);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        /* --- FORM STYLES --- */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 105, 217, 0.2);
+        }
+        
+        /* Forgot Password Link */
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 25px;
+            font-size: 0.95em;
+        }
+
+        .forgot-password a {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* --- CTA BUTTON (Login) --- */
+        .cta-button {
+            background-color: var(--primary-color); /* Use primary color for main action */
+            color: var(--light-text);
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- Social Login Buttons (Copied from signup) --- */
+        .social-login {
+            margin: 25px 0;
+            padding: 20px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .social-login p {
+            margin-bottom: 15px;
+            font-weight: 500;
+            color: #6c757d;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .social-btn {
+            flex-grow: 1;
+            padding: 10px 8px;
+            border-radius: 6px;
+            color: var(--light-text);
+            font-size: 1em;
+            transition: opacity 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .social-btn i {
+            margin-right: 5px;
+            font-size: 1em;
+        }
+        
+        .btn-google { background-color: var(--google-blue); }
+        .btn-facebook { background-color: var(--facebook-blue); }
+        .btn-apple { background-color: var(--apple-black); }
+        
+        /* --- NEW USER / SIGN UP LINK --- */
+        .new-user-link {
+            margin-top: 30px;
+            font-size: 1em;
+        }
+        
+        .new-user-link a {
+            color: var(--accent-color); /* Green accent for signup link */
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .new-user-link a:hover {
+            background-color: #e6f7ed;
+        }
+
+        /* --- SECURITY FOOTER --- */
+        .security-note {
+            margin-top: 25px;
+            font-size: 0.85em;
+            color: #6c757d;
+        }
+        .security-note i {
+            color: var(--primary-color);
+            margin-right: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        
+        <a href="index.html" class="logo-link">MIN-EL</a>
+
+        <h1>Log In to Your Secure Workspace</h1>
+        
+        <form action="/api/login" method="POST"> 
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="you@yourcompany.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <div class="forgot-password">
+                <a href="/forgotpassword.html">Forgot Password?</a>
+            </div>
+            
+            <button type="submit" class="cta-button">
+                <i class="fas fa-sign-in-alt"></i> Log In
+            </button>
+        </form>
+        <div class="social-login">
+            <p>Or log in instantly with:</p>
+            <div class="social-buttons">
+                <a href="#" class="social-btn btn-google"><i class="fab fa-google"></i> Google</a>
+                <a href="#" class="social-btn btn-apple"><i class="fab fa-apple"></i> Apple</a>
+                <a href="#" class="social-btn btn-facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+            </div>
+        </div>
+        
+        <div class="new-user-link">
+            Don't have an account? 
+            <a href="/signupfree.html">Start Your Free Trial</a>
+        </div>
+        
+        <div class="security-note">
+            <p><i class="fas fa-lock"></i> All sessions secured by 256-bit encryption.</p>
+        </div>
+    </div>
+</body>
+</html>

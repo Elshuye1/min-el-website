@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min-El Community | Share, Learn, and Grow Together</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables (Consistent with Min-El Brand) --- */
+        :root {
+            --primary-color: #0069d9; 
+            --secondary-color: #f4f6f9; 
+            --dark-text: #212529; 
+            --light-text: #ffffff;
+            --accent-color: #28a745; 
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-color: #e9ecef;
+        }
+
+        /* --- GLOBAL & UTILITY STYLES --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; }
+        
+        .container {
+            max-width: 1300px; /* Wider container for social feed */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* --- NAVIGATION BAR (Copied for consistency) --- */
+        .navbar {
+            background-color: var(--light-text);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8em; font-weight: 800; color: var(--primary-color); text-transform: uppercase; }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { 
+            color: var(--dark-text); font-weight: 600; margin-left: 30px; 
+            position: relative; transition: color 0.3s;
+        }
+        .cta-button { 
+            background-color: var(--accent-color); color: var(--light-text); 
+            padding: 10px 20px; border-radius: 6px; font-weight: 600; 
+            transition: background-color 0.3s; margin-left: 20px;
+        }
+        .menu-toggle { display: none; font-size: 1.5em; cursor: pointer; }
+
+
+        /* --- COMMUNITY FEED LAYOUT (The Core of the Page) --- */
+        .community-main {
+            display: grid;
+            grid-template-columns: 1fr 2.5fr 1fr; /* Left Sidebar, Main Feed, Right Sidebar */
+            gap: 25px;
+            padding: 30px 0;
+        }
+
+        /* --- SIDEBARS (For Navigation, Announcements, and Ads) --- */
+        .sidebar {
+            padding-top: 20px;
+        }
+        
+        .sidebar-card {
+            background-color: var(--light-text);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+        }
+
+        .sidebar-card h3 {
+            font-size: 1.2em;
+            color: var(--dark-text);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        /* Ad Placeholder Styling (Crucial for Ad Revenue) */
+        .ad-placeholder {
+            height: 250px;
+            background-color: #ffe0b2; /* Soft Orange/Yellow for visual difference */
+            border: 2px dashed #ff9800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #ff9800;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        /* --- POST CREATION BOX (Top of the Feed - Like Facebook/X) --- */
+        .create-post {
+            background-color: var(--light-text);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .post-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            resize: none;
+            height: 60px;
+        }
+        
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .post-actions button {
+            background: none;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 6px;
+            transition: color 0.2s, background-color 0.2s;
+        }
+
+        .post-actions button:hover {
+            color: var(--primary-color);
+            background-color: #f0f0f0;
+        }
+
+        /* --- FEED POST CARD (The Engine of the Social Page) --- */
+        .post-card {
+            background-color: var(--light-text);
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-2px); /* Subtle lift on hover */
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .post-meta strong {
+            display: block;
+            font-weight: 600;
+        }
+
+        .post-meta span {
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+
+        .post-content {
+            padding: 15px;
+        }
+
+        .post-media {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Engagement Bar (Likes, Comments, Share) */
+        .post-footer {
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid var(--border-color);
+            padding: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .post-action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #6c757d;
+            transition: color 0.2s;
+            font-weight: 500;
+        }
+        
+        .post-action-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .post-action-btn i {
+            margin-right: 5px;
+        }
+        
+        .post-action-btn.liked {
+            color: #e74c3c; /* Red color for liked status */
+        }
+        
+        /* Specific Post Styles */
+        .announcement-post {
+            background-color: #fff3cd; /* Light warning color for announcements */
+            border: 1px solid #ffeeba;
+        }
+        
+        .ad-post {
+            background-color: #e6f7ed; /* Light green/success color for paid ads */
+            border: 1px solid var(--accent-color);
+        }
+        
+        /* --- FOOTER (Copied for consistency) --- */
+        .footer {
+            background-color: var(--dark-text);
+            color: var(--secondary-color);
+            padding: 40px 0;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: var(--primary-color);
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+
+        /* --- RESPONSIVENESS (Crucial for Mobile Social Experience) --- */
+        @media (max-width: 1024px) {
+            .community-main {
+                grid-template-columns: 2fr 1fr; /* Remove left sidebar on tablets */
+            }
+            .sidebar:first-child {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .community-main {
+                grid-template-columns: 1fr; /* Stack main feed and sidebar on mobile */
+                gap: 15px;
+            }
+            .sidebar:last-child {
+                order: 1; /* Move right sidebar (ads/announcements) above the feed */
+            }
+            .create-post {
+                order: 2;
+            }
+            .post-card {
+                order: 3;
+            }
+            .post-actions button {
+                font-size: 0.9em;
+                padding: 5px;
+            }
+            /* Mobile Nav Styles (Assume app.js handles the toggle) */
+            .menu-toggle { display: block; }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">MIN-EL</a>
+            
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html#features">Features</a> 
+                <a href="/aboutus.html">About Us</a>
+                <a href="/communty.html">Community</a> <a href="/privecyandpolicy.html">Privacy & Policy</a>
+                <a href="/language.html">Language</a>
+                <a href="/loginauth.html" class="cta-button">Sign Up / Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container community-main">
+        
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h3><i class="fas fa-user-circle"></i> My Min-El Profile</h3>
+                <p style="text-align: center;">Welcome back, [Username]!</p>
+                <a href="#" class="cta-button" style="width: 100%; margin: 10px 0 0 0; background-color: var(--primary-color);">My Dashboard</a>
+                <ul style="list-style: none; padding: 15px 0 0 0; text-align: left; margin: 0;">
+                    <li style="padding: 5px 0;"><a href="#" style="color: var(--dark-text);"><i class="fas fa-bookmark"></i> Saved Posts</a></li>
+                    <li style="padding: 5px 0;"><a href="#" style="color: var(--dark-text);"><i class="fas fa-users"></i> Groups</a></li>
+                    <li style="padding: 5px 0;"><a href="#" style="color: var(--dark-text);"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-card" style="background-color: #e6f7ed;">
+                <h3><i class="fas fa-graduation-cap"></i> Multilingual Learning Hub</h3>
+                <p style="font-size: 0.9em;">Access courses and motivational content in Amharic & English.</p>
+                <a href="#" class="cta-button" style="width: 100%; margin-top: 10px; background-color: #2e8b57;">Start Learning</a>
+            </div>
+
+        </aside>
+
+        <section class="feed-content">
+            
+            <div class="create-post">
+                <textarea class="post-input" placeholder="What inspiring idea or victory do you want to share with the community?"></textarea>
+                <div class="post-actions">
+                    <button><i class="fas fa-video"></i> Video</button>
+                    <button><i class="fas fa-camera"></i> Photo</button>
+                    <button><i class="fas fa-pencil-alt"></i> Letter</button>
+                    <button class="cta-button" style="background-color: var(--primary-color); padding: 8px 20px;">Post</button>
+                </div>
+            </div>
+
+            <div class="post-card announcement-post">
+                <div class="post-header">
+                    <img src="placeholder-logo.png" alt="Min-El Team" class="avatar">
+                    <div class="post-meta">
+                        <strong>Min-El Official Announcement <i class="fas fa-bullhorn" style="color: #ff9800;"></i></strong>
+                        <span>Just now • Featured</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h3 style="color: var(--dark-text); margin-top: 0;">Introducing Min-El V2.0: AI Inventory Management!</h3>
+                    <p>We are thrilled to launch our new AI-powered inventory system, providing predictive alerts and cost-saving insights. Update your app today!</p>
+                </div>
+                <div class="post-footer">
+                    <button class="post-action-btn"><i class="fas fa-thumbs-up"></i> 1.2K</button>
+                    <button class="post-action-btn"><i class="fas fa-comment"></i> 450</button>
+                    <button class="post-action-btn"><i class="fas fa-share-alt"></i> Share</button>
+                </div>
+            </div>
+
+            <div class="post-card">
+                <div class="post-header">
+                    <img src="placeholder-user1.jpg" alt="User 1" class="avatar">
+                    <div class="post-meta">
+                        <strong>Lidiya K.</strong>
+                        <span>4 hours ago • Addis Ababa</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>🎥 Just finished my first week using the Min-El dashboard! Here's a quick 60-second video of my sales report growth. Amazing!</p>
+                    <div style="background-color: #000; height: 300px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em; margin-top: 10px;">
+                        <i class="fas fa-play-circle" style="font-size: 3em; opacity: 0.8;"></i> VIDEO PLAYER EMBED
+                    </div>
+                </div>
+                 <div class="post-footer">
+                    <button class="post-action-btn liked"><i class="fas fa-heart"></i> 52 Likes</button>
+                    <button class="post-action-btn"><i class="fas fa-comment"></i> 12 Comments</button>
+                    <button class="post-action-btn"><i class="fas fa-share-alt"></i> Share</button>
+                </div>
+            </div>
+
+            <div class="post-card ad-post">
+                <div class="post-header">
+                    <img src="placeholder-ad.png" alt="Advertiser" class="avatar">
+                    <div class="post-meta">
+                        <strong>Sponsored Ad <i class="fas fa-tag"></i></strong>
+                        <span>• Partnered Content</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h3 style="color: var(--accent-color); margin-top: 0;">Grow Your Team with Ethiopia's Best Talent!</h3>
+                    <p>Find vetted, professional staff quickly. Click the link to get 50% off your first job posting!</p>
+                    <a href="#" style="display: block; text-align: center; margin-top: 15px;" class="cta-button">View Job Offers</a>
+                </div>
+            </div>
+
+        </section>
+
+        <aside class="sidebar">
+            
+            <div class="sidebar-card">
+                <h3><i class="fas fa-money-check-alt"></i> Ad Space</h3>
+                <div class="ad-placeholder">
+                    Google AdSense Block / Native Min-El Ad
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <h3><i class="fas fa-fire"></i> Trending Now</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9em;">
+                    <li style="padding: 8px 0; border-bottom: 1px dashed var(--border-color);"><a href="#" style="color: var(--primary-color);">#MinElV2</a> <span style="float: right; color: #6c757d;">(1.5K posts)</span></li>
+                    <li style="padding: 8px 0; border-bottom: 1px dashed var(--border-color);"><a href="#" style="color: var(--primary-color);">#EthiopiaTech</a> <span style="float: right; color: #6c757d;">(980 posts)</span></li>
+                    <li style="padding: 8px 0;"><a href="#" style="color: var(--primary-color);">#StartupGrowth</a> <span style="float: right; color: #6c757d;">(720 posts)</span></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-card">
+                <h3><i class="fas fa-ad"></i> Partner Offer</h3>
+                <div class="ad-placeholder" style="height: 150px; background-color: #d4edda; border: 2px dashed #155724; color: #155724;">
+                    Affiliate Marketing Banner
+                </div>
+            </div>
+
+        </aside>
+
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Min-El Platform. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privecyandpolicy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/contact.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="app.js"></script>
+
+</body>
+</html>

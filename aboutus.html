@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Min-El | Our Mission, Vision, and Team</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables (Consistent with Min-El Brand) --- */
+        :root {
+            --primary-color: #0069d9; 
+            --secondary-color: #f4f6f9; 
+            --dark-text: #212529; 
+            --light-text: #ffffff;
+            --accent-color: #28a745; 
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- NAVIGATION BAR (Copied for consistency) --- */
+        .navbar {
+            background-color: var(--light-text);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+        
+        /* Menu Toggle and Nav Links Styles (requires app.js for functionality) */
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { 
+            color: var(--dark-text); font-weight: 600; margin-left: 30px; 
+            position: relative; transition: color 0.3s;
+        }
+        .cta-button { 
+            background-color: var(--accent-color); color: var(--light-text); 
+            padding: 10px 20px; border-radius: 6px; font-weight: 600; 
+            transition: background-color 0.3s; margin-left: 20px;
+        }
+        .menu-toggle { display: none; font-size: 1.5em; cursor: pointer; }
+
+
+        /* --- INTRO BANNER (Thematic Header) --- */
+        .intro-banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+            color: var(--light-text);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .intro-banner h1 {
+            font-size: 3.5em;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .intro-banner p {
+            font-size: 1.3em;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- SECTION STYLING --- */
+        section {
+            padding: 80px 0;
+        }
+        
+        section:nth-child(even) { /* Alternate background for readability */
+            background-color: var(--light-text);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        /* --- 2. CORE VALUES/MISSION --- */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .value-item i {
+            font-size: 3em;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        
+        .value-item h3 {
+            font-size: 1.4em;
+            margin-top: 0;
+            font-weight: 700;
+        }
+
+        /* --- 3. TEAM SECTION (Trust & Professionalism) --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .team-member {
+            background-color: var(--secondary-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid var(--primary-color);
+        }
+
+        .team-member h3 {
+            margin-bottom: 5px;
+            font-size: 1.3em;
+        }
+
+        .team-member p {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        /* --- 4. CTA Footer Section --- */
+        .cta-section {
+            text-align: center;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 60px 0;
+        }
+
+        .cta-section h2 {
+            color: var(--light-text);
+            margin-bottom: 20px;
+        }
+        
+        .cta-button-alt {
+            background-color: #ffc107; /* Bright Yellow Accent */
+            color: var(--dark-text);
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.2s, background-color 0.3s;
+            display: inline-block;
+        }
+
+        .cta-button-alt:hover {
+            background-color: #e0a800;
+            transform: translateY(-2px);
+        }
+        
+        /* --- FOOTER (Copied for consistency) --- */
+        .footer {
+            background-color: var(--dark-text);
+            color: var(--secondary-color);
+            padding: 40px 0;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: var(--primary-color);
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            /* Mobile Nav Styles (Assume app.js handles the toggle) */
+            .menu-toggle { display: block; }
+            .intro-banner h1 { font-size: 2.5em; }
+            .intro-banner p { font-size: 1.1em; }
+            h2 { font-size: 2em; }
+            .team-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">MIN-EL</a>
+            
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html#features">Features</a> 
+                <a href="/aboutus.html">About Us</a> <a href="/communty.html">Community</a>
+                <a href="/privecyandpolicy.html">Privacy & Policy</a>
+                <a href="/language.html">Language</a>
+                <a href="/loginauth.html" class="cta-button">Sign Up / Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="intro-banner">
+        <div class="container">
+            <h1>Building the Future of Business, Together.</h1>
+            <p>Min-El was founded on the belief that secure, world-class business management tools should be accessible to every enterprise, regardless of size or language.</p>
+        </div>
+    </div>
+
+    <section class="mission-values">
+        <div class="container">
+            <h2>Our Core Values</h2>
+            
+            <div class="value-grid">
+                
+                <div class="value-item">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Trust & Security</h3>
+                    <p>We handle your data with enterprise-grade protection (RLS) and absolute commitment to privacy. Trust is our foundation.</p>
+                </div>
+                
+                <div class="value-item">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>Inclusion & Access</h3>
+                    <p>Breaking down language barriers by supporting Amharic and English, ensuring every entrepreneur can thrive globally.</p>
+                </div>
+
+                <div class="value-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Continuous Growth</h3>
+                    <p>We empower our users through a Multilingual Learning Hub, fostering knowledge and perpetual improvement.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <h2>Meet the Leadership</h2>
+            <p style="text-align: center; margin-bottom: 50px; color: #6c757d;">We are a team of passionate engineers, business analysts, and educators dedicated to your success.</p>
+            
+            <div class="team-grid">
+                
+                <div class="team-member">
+                    <img src="placeholder-founder.jpg" alt="Founder Name"> 
+                    <h3>Elsa Minasse</h3>
+                    <p>Founder & CEO</p>
+                    <a href="#" style="color: var(--primary-color); font-size: 1.2em;"><i class="fab fa-linkedin"></i></a>
+                </div>
+                
+                <div class="team-member">
+                    <img src="placeholder-cto.jpg" alt="CTO Name">
+                    <h3>Samuel Desta</h3>
+                    <p>Chief Technology Officer (CTO)</p>
+                    <a href="#" style="color: var(--primary-color); font-size: 1.2em;"><i class="fab fa-linkedin"></i></a>
+                </div>
+
+                <div class="team-member">
+                    <img src="placeholder-education.jpg" alt="Head of Education Name">
+                    <h3>Almaz Kebede</h3>
+                    <p>Head of Learning & Content</p>
+                    <a href="#" style="color: var(--primary-color); font-size: 1.2em;"><i class="fab fa-linkedin"></i></a>
+                </div>
+                
+                <div class="team-member">
+                    <img src="placeholder-ops.jpg" alt="Head of Ops Name">
+                    <h3>Girma Tesfaye</h3>
+                    <p>Director of Operations</p>
+                    <a href="#" style="color: var(--primary-color); font-size: 1.2em;"><i class="fab fa-linkedin"></i></a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your Business?</h2>
+            <a href="signupfree.html" class="cta-button-alt">
+                Start Your 14-Day Free Trial
+            </a>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Min-El Platform. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privecyandpolicy.html">Privacy Policy</a>
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/contact.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="app.js"></script>
+
+</body>
+</html>
